@@ -42,8 +42,6 @@
         <div id="questionsContainer"></div>
         <button type="button" onclick="calculateResult()">Voir Résultat</button>
     </form>
-    <h2 id="result"></h2>
-    <p id="resultDetails"></p>
     
     <script>
         const questions = [
@@ -70,12 +68,6 @@
                 { text: "Interrompez fréquemment et critiquez les idées", value: "B" },
                 { text: "Encouragez chacun à s'exprimer et facilitez un consensus", value: "C" },
                 { text: "Monopolisez la parole et imposez vos décisions", value: "D" }
-            ]},
-            { text: "Quand vous donnez du feedback, vous:", answers: [
-                { text: "Restez vague et général", value: "A" },
-                { text: "Vous concentrez principalement sur les aspects négatifs", value: "B" },
-                { text: "Équilibrez les points d'amélioration avec une reconnaissance sincère", value: "C" },
-                { text: "Formulez vos critiques en soulignant votre autorité", value: "D" }
             ]},
         ];
 
@@ -117,8 +109,9 @@
                 D: "Vous imposez vos décisions sans débat. Cela peut être efficace à court terme mais peut engendrer du ressentiment à long terme."
             };
 
-            document.getElementById('result').innerText = `Votre style prédominant est: ${styles[maxCategory]}`;
-            document.getElementById('resultDetails').innerText = descriptions[maxCategory];
+            // Rediriger vers la page de résultat avec les données
+            const resultUrl = `result.html?style=${styles[maxCategory]}&description=${encodeURIComponent(descriptions[maxCategory])}`;
+            window.location.href = resultUrl;
         }
 
         loadQuestions();
