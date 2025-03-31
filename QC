@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Communication Managériale</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .question { margin-bottom: 20px; }
+        button { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Questionnaire d'auto-évaluation de votre style de communication</h1>
+    <form id="quizForm">
+        <div id="questionsContainer"></div>
+        <button type="button" onclick="calculateResult()">Voir Résultat</button>
+    </form>
+    <h2 id="result"></h2>
+    
+    <script>
+        const questions = [
+            {
+                text: "Lors d'un désaccord avec un membre de votre équipe, vous avez tendance à:",
+                answers: [
+                    { text: "Éviter la confrontation et céder pour maintenir l'harmonie", value: "A" },
+                    { text: "Imposer votre point de vue fermement", value: "B" },
+                    { text: "Exprimer clairement votre opinion tout en écoutant", value: "C" },
+                    { text: "Utiliser votre autorité pour mettre fin au débat", value: "D" }
+                ]
+            },
+            {
+                text: "Quand un collaborateur commet une erreur, vous:",
+                answers: [
+                    { text: "Hésitez à aborder le sujet directement", value: "A" },
+                    { text: "Exprimez votre frustration ouvertement", value: "B" },
+                    { text: "Discutez de l'erreur en privé et cherchez des solutions", value: "C" },
+                    { text: "Soulignez publiquement l'erreur", value: "D" }
+                ]
+            },
+            // Ajoute les autres questions ici...
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                shuffleArray(q.answers);
+                let questionHTML = `<div class='question'><p>${index + 1}. ${q.text}</p>`;
+                q.answers.forEach(a => {
+                    questionHTML += `<label><input type='radio' name='q${index}' value='${a.value}'> ${a.text}</label><br>`;
+                });
+                questionHTML += `</div>`;
+                container.innerHTML += questionHTML;
+            });
+        }
+
+        function calculateResult() {
+            const form = document.getElementById('quizForm');
+            const answers = { A: 0, B: 0, C: 0, D: 0 };
+            
+            questions.forEach((_, index) => {
+                const selected = form.querySelector(`input[name='q${index}']:checked`);
+                if (selected) answers[selected.value]++;
+            });
+
+            let maxCategory = Object.keys(answers).reduce((a, b) => answers[a] > answers[b] ? a : b);
+            let styles = {
+                A: "Communication passive",
+                B: "Communication agressive",
+                C: "Communication assertive",
+                D: "Communication dominatrice"
+            };
+
+            document.getElementById('result').innerText = `Votre style prédominant est: ${styles[maxCategory]}`;
+        }
+
+        loadQuestions();
+    </script>
+</body>
+</html>
