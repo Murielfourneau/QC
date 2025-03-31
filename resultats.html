@@ -3,21 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Résultats du Quiz</title>
+    <title>Résultats du Questionnaire de Communication Managériale</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f8f9fa;
+        }
+        .results {
+            background-color: #76b6d9; /* Fond bleu clair */
+            padding: 30px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+        }
+        .results h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .results p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 20px; 
+            padding: 10px 15px; 
+            font-size: 16px; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Voici vos résultats</h1>
-    <div id="result"></div>
-    <div id="description"></div>
+    <div class="results">
+        <h2>Résultats de votre questionnaire</h2>
+        <p id="result"></p>
+        <p id="resultDetails"></p>
+        <button onclick="window.location.href='quiz.html'">Retour au quiz</button>
+    </div>
 
     <script>
-        window.onload = function() {
-            const result = JSON.parse(localStorage.getItem('result'));
-            if (result) {
-                document.getElementById('result').innerText = `Votre style de communication est : ${result.style}`;
-                document.getElementById('description').innerText = result.description[result.style];
-            }
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style'); // Récupérer le style depuis les résultats envoyés à cette page
+
+        const styles = {
+            A: "Communication passive",
+            B: "Communication agressive",
+            C: "Communication assertive",
+            D: "Communication dominatrice"
         };
+
+        const descriptions = {
+            A: "D'après vos résultats, votre communication est majoritairement passive. Vous évitez les confrontations, avez du mal à exprimer vos besoins ou vos opinions. Ce style peut entraîner des malentendus et un manque de direction claire. Vous préférez maintenir l'harmonie, mais cela peut parfois être au détriment de l'efficacité et du respect de vos idées.",
+            B: "D'après vos résultats, votre communication est majoritairement agressive. Vous exprimez vos pensées de manière directe, parfois de façon brusque, ce qui peut être perçu comme intimidant. Ce style peut générer des tensions et réduire la créativité au sein de votre équipe. Vous avez tendance à imposer vos idées sans prendre suffisamment en compte les autres.",
+            C: "D'après vos résultats, votre communication est majoritairement assertive. Vous savez exprimer clairement vos idées tout en respectant celles des autres. Ce style est apprécié pour sa capacité à créer un environnement de travail respectueux, productif et ouvert à la collaboration. Vous êtes capable de résoudre les conflits de manière constructive et d'exprimer vos attentes de façon claire et respectueuse.",
+            D: "D'après vos résultats, votre communication est majoritairement dominatrice. Vous prenez des décisions unilatérales et attendez à ce qu'elles soient suivies sans discussion. Bien que cela puisse être efficace à court terme, ce style peut engendrer du ressentiment et nuire à l'engagement des membres de votre équipe à long terme. Il est important de trouver un équilibre entre autorité et écoute."
+        };
+
+        // Affichage des résultats
+        document.getElementById('result').innerText = `Votre style de communication est : ${styles[style]}`;
+        document.getElementById('resultDetails').innerText = descriptions[style];
     </script>
 </body>
 </html>
