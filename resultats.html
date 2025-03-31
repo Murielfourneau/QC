@@ -21,6 +21,18 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #003d82;
+        }
     </style>
 </head>
 <body>
@@ -36,9 +48,25 @@
         // Récupération du résultat depuis localStorage
         const result = JSON.parse(localStorage.getItem('result'));
 
+        // Correspondance des styles
+        const styles = {
+            A: "Communication passive",
+            B: "Communication agressive",
+            C: "Communication assertive",
+            D: "Communication dominatrice"
+        };
+
+        // Descriptions détaillées des styles
+        const descriptions = {
+            A: "Vous évitez les confrontations et avez du mal à exprimer vos besoins. Ce style peut créer des malentendus et un manque de direction claire.",
+            B: "Vous exprimez vos pensées de manière directe mais parfois trop durement. Cela peut générer des tensions dans votre équipe.",
+            C: "Vous savez communiquer clairement tout en respectant les autres. Ce style favorise un environnement de travail productif et respectueux.",
+            D: "Vous imposez vos décisions sans débat. Cela peut être efficace à court terme mais peut engendrer du ressentiment à long terme."
+        };
+
         if (result) {
-            document.getElementById("resultStyle").innerText = `Votre communication est majoritairement : ${result.style}`;
-            document.getElementById("resultDescription").innerText = result.description[result.style];
+            document.getElementById("resultStyle").innerText = `Votre communication est majoritairement : ${styles[result.style]}`;
+            document.getElementById("resultDescription").innerText = descriptions[result.style];
         } else {
             document.getElementById("resultStyle").innerText = "Erreur";
             document.getElementById("resultDescription").innerText = "Aucun résultat détecté. Veuillez refaire le test.";
