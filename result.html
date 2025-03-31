@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultat du Questionnaire</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f8f9fa;
+        }
+        .result-container { 
+            background: #ffffff; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            max-width: 600px; 
+            margin: 0 auto;
+        }
+        h1 { color: #007bff; }
+        p { font-size: 16px; }
+        button { 
+            margin-top: 20px; 
+            padding: 10px 15px; 
+            font-size: 16px; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1 id="resultTitle"></h1>
+        <p id="resultDescription"></p>
+        <button onclick="window.location.href = 'index.html';">Retour au questionnaire</button>
+    </div>
+
+    <script>
+        // Récupérer les paramètres d'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const style = urlParams.get('style');
+        const description = urlParams.get('description');
+
+        // Afficher les résultats
+        document.getElementById('resultTitle').innerText = `Votre style prédominant est: ${style}`;
+        document.getElementById('resultDescription').innerText = description;
+    </script>
+</body>
+</html>
