@@ -5,9 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Communication Managériale</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .question { margin-bottom: 20px; }
-        button { margin-top: 20px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f8f9fa;
+        }
+        .question { 
+            margin-bottom: 20px; 
+            padding: 15px;
+            border-radius: 8px;
+            background: #ffffff;
+            transition: background 0.3s ease-in-out;
+        }
+        .question:hover {
+            background: #f0f0f0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button { 
+            margin-top: 20px; 
+            padding: 10px 15px; 
+            font-size: 16px; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -17,70 +43,48 @@
         <button type="button" onclick="calculateResult()">Voir Résultat</button>
     </form>
     <h2 id="result"></h2>
+    <p id="resultDetails"></p>
     
     <script>
         const questions = [
-            {
-                text: "Lors d'un désaccord avec un membre de votre équipe, vous avez tendance à:",
-                answers: [
-                    { text: "Éviter la confrontation et céder pour maintenir l'harmonie", value: "A" },
-                    { text: "Imposer votre point de vue fermement", value: "B" },
-                    { text: "Exprimer clairement votre opinion tout en écoutant", value: "C" },
-                    { text: "Utiliser votre autorité pour mettre fin au débat", value: "D" }
-                ]
-            },
-            {
-                text: "Quand un collaborateur commet une erreur, vous:",
-                answers: [
-                    { text: "Hésitez à aborder le sujet directement", value: "A" },
-                    { text: "Exprimez votre frustration ouvertement", value: "B" },
-                    { text: "Discutez de l'erreur en privé et cherchez des solutions", value: "C" },
-                    { text: "Soulignez publiquement l'erreur", value: "D" }
-                ]
-            },
-            {
-                text: "Face à une charge de travail excessive, vous:",
-                answers: [
-                    { text: "Acceptez toutes les demandes supplémentaires sans exprimer vos limites", value: "A" },
-                    { text: "Refusez catégoriquement toute nouvelle tâche", value: "B" },
-                    { text: "Évaluez la situation et proposez des alternatives", value: "C" },
-                    { text: "Déléguez systématiquement à vos subordonnés", value: "D" }
-                ]
-            },
-            {
-                text: "Lors des réunions d'équipe, vous:",
-                answers: [
-                    { text: "Participez peu et hésitez à partager vos idées", value: "A" },
-                    { text: "Interrompez fréquemment les autres", value: "B" },
-                    { text: "Encouragez chacun à s'exprimer", value: "C" },
-                    { text: "Monopolisez la parole", value: "D" }
-                ]
-            },
-            {
-                text: "Quand vous donnez du feedback, vous:",
-                answers: [
-                    { text: "Restez vague et évitez les critiques directes", value: "A" },
-                    { text: "Vous concentrez sur les aspects négatifs", value: "B" },
-                    { text: "Équilibrez points positifs et améliorations", value: "C" },
-                    { text: "Soulignez votre position d'autorité", value: "D" }
-                ]
-            }
+            { text: "Lors d'un désaccord avec un membre de votre équipe, vous avez tendance à:", answers: [
+                { text: "Éviter la confrontation et céder pour maintenir l'harmonie", value: "A" },
+                { text: "Imposer votre point de vue fermement", value: "B" },
+                { text: "Exprimer clairement votre opinion tout en écoutant", value: "C" },
+                { text: "Utiliser votre autorité pour mettre fin au débat", value: "D" }
+            ]},
+            { text: "Quand un collaborateur commet une erreur, vous:", answers: [
+                { text: "Hésitez à aborder le sujet directement", value: "A" },
+                { text: "Exprimez votre frustration ouvertement", value: "B" },
+                { text: "Discutez de l'erreur en privé et cherchez des solutions", value: "C" },
+                { text: "Soulignez publiquement l'erreur", value: "D" }
+            ]},
+            { text: "Face à une charge de travail excessive, vous:", answers: [
+                { text: "Acceptez toutes les demandes sans exprimer vos limites", value: "A" },
+                { text: "Refusez catégoriquement toute nouvelle tâche", value: "B" },
+                { text: "Évaluez la situation et proposez des alternatives", value: "C" },
+                { text: "Déléguez systématiquement sans tenir compte de la charge des autres", value: "D" }
+            ]},
+            { text: "Lors des réunions d'équipe, vous:", answers: [
+                { text: "Participez peu et laissez les autres dominer", value: "A" },
+                { text: "Interrompez fréquemment et critiquez les idées", value: "B" },
+                { text: "Encouragez chacun à s'exprimer et facilitez un consensus", value: "C" },
+                { text: "Monopolisez la parole et imposez vos décisions", value: "D" }
+            ]},
+            { text: "Quand vous donnez du feedback, vous:", answers: [
+                { text: "Restez vague et général", value: "A" },
+                { text: "Vous concentrez principalement sur les aspects négatifs", value: "B" },
+                { text: "Équilibrez les points d'amélioration avec une reconnaissance sincère", value: "C" },
+                { text: "Formulez vos critiques en soulignant votre autorité", value: "D" }
+            ]},
         ];
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
 
         function loadQuestions() {
             const container = document.getElementById('questionsContainer');
             container.innerHTML = '';
             
             questions.forEach((q, index) => {
-                shuffleArray(q.answers);
-                let questionHTML = `<div class='question'><p>${index + 1}. ${q.text}</p>`;
+                let questionHTML = `<div class='question'><p><strong>${index + 1}. ${q.text}</strong></p>`;
                 q.answers.forEach(a => {
                     questionHTML += `<label><input type='radio' name='q${index}' value='${a.value}'> ${a.text}</label><br>`;
                 });
@@ -106,7 +110,15 @@
                 D: "Communication dominatrice"
             };
 
+            let descriptions = {
+                A: "Vous évitez les confrontations et avez du mal à exprimer vos besoins. Ce style peut créer des malentendus et un manque de direction claire.",
+                B: "Vous exprimez vos pensées de manière directe mais parfois trop durement. Cela peut générer des tensions dans votre équipe.",
+                C: "Vous savez communiquer clairement tout en respectant les autres. Ce style favorise un environnement de travail productif et respectueux.",
+                D: "Vous imposez vos décisions sans débat. Cela peut être efficace à court terme mais peut engendrer du ressentiment à long terme."
+            };
+
             document.getElementById('result').innerText = `Votre style prédominant est: ${styles[maxCategory]}`;
+            document.getElementById('resultDetails').innerText = descriptions[maxCategory];
         }
 
         loadQuestions();
