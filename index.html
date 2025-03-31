@@ -42,6 +42,8 @@
         <div id="questionsContainer"></div>
         <button type="button" onclick="calculateResult()">Voir Résultat</button>
     </form>
+    <h2 id="result"></h2>
+    <p id="resultDetails"></p>
     
     <script>
         const questions = [
@@ -69,6 +71,30 @@
                 { text: "Encouragez chacun à s'exprimer et facilitez un consensus", value: "C" },
                 { text: "Monopolisez la parole et imposez vos décisions", value: "D" }
             ]},
+            { text: "Concernant la prise de décision, vous:", answers: [
+                { text: "Évitez de prendre des décisions difficiles ou les reportez constamment", value: "A" },
+                { text: "Prenez des décisions impulsives sans consulter l'équipe", value: "B" },
+                { text: "Impliquez les personnes appropriées dans le processus et expliquez vos choix", value: "C" },
+                { text: "Prenez des décisions unilatérales et attendez qu'elles soient suivies sans question", value: "D" }
+            ]},
+            { text: "Lorsqu'un employé partage une idée nouvelle, vous:", answers: [
+                { text: "Accueillez toutes les idées sans discrimination", value: "A" },
+                { text: "Critiquez souvent les nouvelles propositions", value: "B" },
+                { text: "Écoutez avec attention, posez des questions et évaluez objectivement", value: "C" },
+                { text: "Accordez peu d'attention aux idées qui ne viennent pas de vous", value: "D" }
+            ]},
+            { text: "Dans votre communication écrite (emails, messages), vous:", answers: [
+                { text: "Utilisez des formulations indirectes ou ambiguës", value: "A" },
+                { text: "Employez un ton directif ou accusatoire", value: "B" },
+                { text: "Communiquez clairement vos attentes tout en restant respectueux", value: "C" },
+                { text: "Donnez des ordres concis, sans explication", value: "D" }
+            ]},
+            { text: "Face à un échec ou un objectif non atteint, vous:", answers: [
+                { text: "Évitez d'aborder le sujet ou minimisez l'échec", value: "A" },
+                { text: "Blâmez des individus ou cherchez des coupables", value: "B" },
+                { text: "Analysez objectivement les causes et vous concentrez sur les apprentissages", value: "C" },
+                { text: "Exigez des explications et imposez de nouvelles règles", value: "D" }
+            ]}
         ];
 
         function loadQuestions() {
@@ -109,9 +135,8 @@
                 D: "Vous imposez vos décisions sans débat. Cela peut être efficace à court terme mais peut engendrer du ressentiment à long terme."
             };
 
-            // Rediriger vers la page de résultat avec les données
-            const resultUrl = `result.html?style=${styles[maxCategory]}&description=${encodeURIComponent(descriptions[maxCategory])}`;
-            window.location.href = resultUrl;
+            document.getElementById('result').innerText = `Votre style prédominant est: ${styles[maxCategory]}`;
+            document.getElementById('resultDetails').innerText = descriptions[maxCategory];
         }
 
         loadQuestions();
