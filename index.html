@@ -147,7 +147,49 @@
             });
         }
 
-        loadQuestions();
+        loadQuestions();function calculateResult() {
+    const form = document.getElementById('quizForm');
+    const answers = { A: 0, B: 0, C: 0, D: 0 };
+
+    // Vérifie si toutes les questions ont une réponse
+    let allAnswered = true;
+
+    questions.forEach((_, index) => {
+        const selected = form.querySelector(`input[name='q${index}']:checked`);
+        if (selected) {
+            answers[selected.value]++;
+        } else {
+            allAnswered = false;
+        }
+    });
+
+    // Vérifie si toutes les questions ont été répondues
+    if (!allAnswered) {
+        alert("Veuillez répondre à toutes les questions avant de voir le résultat.");
+        return;
+    }
+
+    // Trouve la catégorie la plus choisie
+    let maxCategory = Object.keys(answers).reduce((a, b) => answers[a] > answers[b] ? a : b);
+
+    // Crée un objet de résultat
+    const result = {
+        style: maxCategory,
+        description: {
+            A: "Vous évitez les confrontations et avez du mal à exprimer vos besoins.",
+            B: "Vous exprimez vos pensées de manière directe mais parfois trop durement.",
+            C: "Vous savez communiquer clairement tout en respectant les autres.",
+            D: "Vous imposez vos décisions sans débat."
+        }
+    };
+
+    // Stocke le résultat dans le localStorage
+    localStorage.setItem('result', JSON.stringify(result));
+
+    // Redirige vers la page des résultats
+    window.location.href = 'resultats.html';
+}
+
     </script>
 
 </body>
