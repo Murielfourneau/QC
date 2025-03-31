@@ -7,41 +7,67 @@
     <style>
         body { 
             font-family: Arial, sans-serif; 
-            margin: 20px; 
-            background-color: #f8f9fa;
+            margin: 0; 
+            padding: 20px;
+            background-color: #76b6d9; 
+            text-align: center; 
+            color: white;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
         .question { 
             margin-bottom: 20px; 
             padding: 15px;
             border-radius: 8px;
             background: #ffffff;
-            transition: background 0.3s ease-in-out;
+            text-align: left;
         }
         .question:hover {
             background: #f0f0f0;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        input[type="radio"] {
+            margin-right: 8px;
+        }
         button { 
             margin-top: 20px; 
             padding: 10px 15px; 
             font-size: 16px; 
-            background-color: #007bff; 
+            background-color: #0056b3; 
             color: white; 
             border: none; 
             border-radius: 5px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #003d82;
         }
     </style>
 </head>
 <body>
+
     <h1>Questionnaire d'auto-évaluation de votre style de communication</h1>
-    <form id="quizForm">
-        <div id="questionsContainer"></div>
-        <button type="button" onclick="calculateResult()">Voir Résultat</button>
-    </form>
+    <div class="container">
+        <form id="quizForm">
+            <div id="questionsContainer"></div>
+            <button type="button" onclick="calculateResult()">Voir Résultat</button>
+        </form>
+    </div>
     
     <script>
         const questions = [
@@ -74,36 +100,6 @@
                 { text: "Prenez des décisions impulsives sans consulter l'équipe", value: "B" },
                 { text: "Impliquez les personnes appropriées dans le processus et expliquez vos choix", value: "C" },
                 { text: "Prenez des décisions unilatérales et attendez qu'elles soient suivies sans question", value: "D" }
-            ]},
-            { text: "Lorsqu'un employé partage une idée nouvelle, vous:", answers: [
-                { text: "Accueillez toutes les idées sans discrimination", value: "A" },
-                { text: "Critiquez souvent les nouvelles propositions", value: "B" },
-                { text: "Écoutez avec attention, posez des questions et évaluez objectivement", value: "C" },
-                { text: "Accordez peu d'attention aux idées qui ne viennent pas de vous", value: "D" }
-            ]},
-            { text: "Dans votre communication écrite (emails, messages), vous:", answers: [
-                { text: "Utilisez des formulations indirectes ou ambiguës", value: "A" },
-                { text: "Employez un ton directif ou accusatoire", value: "B" },
-                { text: "Communiquez clairement vos attentes tout en restant respectueux", value: "C" },
-                { text: "Donnez des ordres concis, sans explication", value: "D" }
-            ]},
-            { text: "Face à un échec ou un objectif non atteint, vous:", answers: [
-                { text: "Évitez d'aborder le sujet ou minimisez l'échec", value: "A" },
-                { text: "Blâmez des individus ou cherchez des coupables", value: "B" },
-                { text: "Analysez objectivement les causes et vous concentrez sur les apprentissages", value: "C" },
-                { text: "Exigez des explications et imposez de nouvelles règles", value: "D" }
-            ]},
-            { text: "Concernant votre écoute lors des réunions, vous:", answers: [
-                { text: "Écoutez rarement les autres et vous vous concentrez sur vos propres idées", value: "A" },
-                { text: "Écoutez activement mais parfois de manière trop critique", value: "B" },
-                { text: "Faites un effort pour comprendre toutes les opinions et favorisez un échange respectueux", value: "C" },
-                { text: "Interrompez fréquemment les autres pour imposer vos idées", value: "D" }
-            ]},
-            { text: "Lorsque vous donnez des retours à vos collaborateurs, vous:", answers: [
-                { text: "Faites rarement des retours ou les évitez", value: "A" },
-                { text: "Fournissez des retours brutaux sans considération pour les sentiments", value: "B" },
-                { text: "Donnez des retours constructifs et cherchez à soutenir l'amélioration", value: "C" },
-                { text: "Donnez des retours unilatéraux en imposant vos attentes sans discussion", value: "D" }
             ]}
         ];
 
@@ -114,7 +110,7 @@
             questions.forEach((q, index) => {
                 let questionHTML = `<div class='question'><p><strong>${index + 1}. ${q.text}</strong></p>`;
                 q.answers.forEach(a => {
-                    questionHTML += `<label><input type='radio' name='q${index}' value='${a.value}'> ${a.text}</label><br>`;
+                    questionHTML += `<label><input type='radio' name='q${index}' value='${a.value}'> ${a.text}</label>`;
                 });
                 questionHTML += `</div>`;
                 container.innerHTML += questionHTML;
@@ -141,10 +137,11 @@
                 }
             };
             localStorage.setItem('result', JSON.stringify(result));
-            window.location.href = 'resultats.html'; // Redirige vers la page des résultats
+            window.location.href = 'resultats.html';
         }
 
         loadQuestions();
     </script>
+
 </body>
 </html>
