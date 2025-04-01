@@ -72,64 +72,64 @@
     <script>
         const questions = [
             { text: "Lors d'un désaccord avec un membre de votre équipe, vous avez tendance à:", answers: [
-                { text: "Éviter la confrontation et céder pour maintenir l'harmonie", value: "A" },
-                { text: "Imposer votre point de vue fermement", value: "B" },
-                { text: "Exprimer clairement votre opinion tout en écoutant", value: "C" },
-                { text: "Utiliser votre autorité pour mettre fin au débat", value: "D" }
+                { text: "Éviter la confrontation et vous taire pour maintenir l'harmonie", value: "A" },
+                { text: "Vous assurez qu'il a bien compris qu'il a tort", value: "B" },
+                { text: "Exprimer clairement votre opinion tout en écoutant les autres", value: "C" },
+                { text: "Mettre fin au débat en utilisant votre autorité de responsable", value: "D" }
             ]},
             { text: "Quand un collaborateur commet une erreur, vous:", answers: [
                 { text: "Hésitez à aborder le sujet directement", value: "A" },
-                { text: "Exprimez votre frustration ouvertement", value: "B" },
+                { text: "Allez immédiatement lui en parler dans son bureau ", value: "B" },
                 { text: "Discutez de l'erreur en privé et cherchez des solutions", value: "C" },
-                { text: "Soulignez publiquement l'erreur", value: "D" }
+                { text: "lui envoyez un mail avec toute l'équipe en copie", value: "D" }
             ]},
             { text: "Face à une charge de travail excessive, vous:", answers: [
-                { text: "Acceptez toutes les demandes sans exprimer vos limites", value: "A" },
+                { text: "Acceptez toutes les demandes, vous êtes là pour travailler", value: "A" },
                 { text: "Refusez catégoriquement toute nouvelle tâche", value: "B" },
                 { text: "Évaluez la situation et proposez des alternatives", value: "C" },
-                { text: "Déléguez systématiquement sans tenir compte de la charge des autres", value: "D" }
+                { text: "Acceptez et déléguez à votre assistant(e) qui est là pour ça", value: "D" }
             ]},
             { text: "Lors des réunions d'équipe, vous:", answers: [
-                { text: "Participez peu et laissez les autres dominer", value: "A" },
-                { text: "Interrompez fréquemment et critiquez les idées", value: "B" },
-                { text: "Encouragez chacun à s'exprimer et facilitez un consensus", value: "C" },
-                { text: "Monopolisez la parole et imposez vos décisions", value: "D" }
+                { text: "Participez peu et laissez les autres parler", value: "A" },
+                { text: "Interrompez fréquemment et critiquez les idées de vos collègues", value: "B" },
+                { text: "Ecoutez les autres et participez aux débats", value: "C" },
+                { text: "Présentez votre travail et vos idées", value: "D" }
             ]},
             { text: "Concernant la prise de décision, vous:", answers: [
                 { text: "Évitez de prendre des décisions difficiles ou les reportez constamment", value: "A" },
-                { text: "Prenez des décisions impulsives sans consulter l'équipe", value: "B" },
+                { text: "Prenez des décisions rapides voir impulsives vous êtes efficaces", value: "B" },
                 { text: "Impliquez les personnes appropriées dans le processus et expliquez vos choix", value: "C" },
-                { text: "Prenez des décisions unilatérales et attendez qu'elles soient suivies sans question", value: "D" }
+                { text: "Prenez des décisions, les autres suivront", value: "D" }
             ]},
             { text: "Lorsqu'un employé partage une idée nouvelle, vous:", answers: [
-                { text: "Accueillez toutes les idées sans discrimination", value: "A" },
+                { text: "Accueillez toutes les idées ", value: "A" },
                 { text: "Critiquez souvent les nouvelles propositions", value: "B" },
                 { text: "Écoutez avec attention, posez des questions et évaluez objectivement", value: "C" },
-                { text: "Accordez peu d'attention aux idées qui ne viennent pas de vous", value: "D" }
+                { text: "Ecoutez les idées mais vous connaissez déjà le choix final", value: "D" }
             ]},
             { text: "Dans votre communication écrite (emails, messages), vous:", answers: [
-                { text: "Utilisez des formulations indirectes ou ambiguës", value: "A" },
+                { text: "Utilisez des formulations prudentes", value: "A" },
                 { text: "Employez un ton directif ou accusatoire", value: "B" },
                 { text: "Communiquez clairement vos attentes tout en restant respectueux", value: "C" },
-                { text: "Donnez des ordres concis, sans explication", value: "D" }
+                { text: "Ecrivez directement vos idées et demandes sans fioritures", value: "D" }
             ]},
             { text: "Face à un échec ou un objectif non atteint, vous:", answers: [
                 { text: "Évitez d'aborder le sujet ou minimisez l'échec", value: "A" },
-                { text: "Blâmez des individus ou cherchez des coupables", value: "B" },
-                { text: "Analysez objectivement les causes et vous concentrez sur les apprentissages", value: "C" },
+                { text: "Blâmez les autres services ou cherchez des coupables", value: "B" },
+                { text: "Analysez objectivement les causes et vous concentrez sur la suite", value: "C" },
                 { text: "Exigez des explications et imposez de nouvelles règles", value: "D" }
             ]},
             { text: "Concernant votre écoute lors des réunions, vous:", answers: [
-                { text: "Écoutez rarement les autres et vous vous concentrez sur vos propres idées", value: "A" },
+                { text: "Vous vous concentrez sur vos idées", value: "A" },
                 { text: "Écoutez activement mais parfois de manière trop critique", value: "B" },
                 { text: "Faites un effort pour comprendre toutes les opinions et favorisez un échange respectueux", value: "C" },
-                { text: "Interrompez fréquemment les autres pour imposer vos idées", value: "D" }
+                { text: "Parlez beaucoup car vous savez que si vous voulez avancer il faut bien défendre ses idées", value: "D" }
             ]},
             { text: "Lorsque vous donnez des retours à vos collaborateurs, vous:", answers: [
                 { text: "Faites rarement des retours ou les évitez", value: "A" },
-                { text: "Fournissez des retours brutaux sans considération pour les sentiments", value: "B" },
+                { text: "Fournissez des retours francs directs", value: "B" },
                 { text: "Donnez des retours constructifs et cherchez à soutenir l'amélioration", value: "C" },
-                { text: "Donnez des retours unilatéraux en imposant vos attentes sans discussion", value: "D" }
+                { text: "Utilisez l'ambiguité ou le double langage, on verra bien s'ils comprennent", value: "D" }
             ]}
         ];
 
